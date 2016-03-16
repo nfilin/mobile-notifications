@@ -11,7 +11,7 @@
   ],
   "require": {
     "php": ">=5.4",
-    "nfilin/libs": "dev-master"
+    "nfilin/libs": "^1.3"
   },
   "autoload": {
     "psr-0": {
