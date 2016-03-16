@@ -1,0 +1,23 @@
+{
+  "name": "nfilin/mobile-notifications",
+  "homepage": "https://github.com/nfilin/mobile-notifications",
+  "type": "library",
+  "license": "MIT",
+  "authors": [
+    {
+      "name": "Stanislav Markovskyi",
+      "email": "samarkowski@gmail.com"
+    }
+  ],
+  "require": {
+    "php": ">=5.4",
+    "nfilin/libs": "dev-master"
+  },
+  "autoload": {
+    "psr-0": {
+      "Nfilin\\Libs": "src/"
+    }
+  },
+  "require-dev": {
+  }
+}
