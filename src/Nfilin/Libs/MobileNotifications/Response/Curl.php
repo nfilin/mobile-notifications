@@ -1,5 +1,4 @@
 <?php
-
 namespace Nfilin\Libs\MobileNotifications\Response;
 
 use Nfilin\Libs\BaseObject;

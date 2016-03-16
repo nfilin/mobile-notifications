@@ -1,5 +1,4 @@
 <?php
-
 namespace Nfilin\Libs\MobileNotifications\Payload;
 
 /**

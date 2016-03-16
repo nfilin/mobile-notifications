@@ -1,5 +1,4 @@
 <?php
-
 namespace Nfilin\Libs\MobileNotifications\Device;
 
 use Nfilin\Libs\BaseIterator;
@@ -8,13 +7,13 @@ use Nfilin\Libs\BaseIterator;
  * Class DeviceList
  * @package Nfilin\Libs\MobileNotifications\Device
  */
-class DeviceList extends BaseIterator implements DeviceListInterface
+class BaseList extends BaseIterator implements DeviceListInterface
 {
     const ELEMENT_CLASS = 'Device';
 
     /**
      * DeviceList constructor.
-     * @param array $array
+     * @param array|DeviceListInterface $array
      * @param string $element_class
      * @throws \Exception
      */
@@ -24,13 +23,16 @@ class DeviceList extends BaseIterator implements DeviceListInterface
         } elseif (class_exists(__NAMESPACE__ . '\\' . $element_class)) {
             $element_class = __NAMESPACE__ . '\\' . $element_class;
         } else {
-            $element_class = Device::className();
+            $element_class = Base::className();
         }
+        if (!is_subclass_of($element_class, __NAMESPACE__ . '\\DeviceInterface'))
+            throw new \Exception('Element class should be an implementation of DeviceInterface');
+
         if (is_array($array)) {
             foreach ($array as $key => $value) {
                 if (is_string($value) || is_array($value)) {
                     $array[$key] = new $element_class($value);
-                } elseif (!is_object($value) || !$value instanceof Device) {
+                } elseif (!is_object($value) || !$value instanceof DeviceInterface) {
                     unset($array[$key]);
                 }
             }
@@ -40,7 +42,7 @@ class DeviceList extends BaseIterator implements DeviceListInterface
             throw new \Exception("First parameter should contain device information");
         } elseif ($array instanceof $element_class) {
             $array = [$array];
-        } elseif ($array instanceof DeviceList) {
+        } elseif ($array instanceof DeviceListInterface) {
             if (!$array instanceof static) {
                 $array = $array->getArrayCopy();
             }

@@ -1,5 +1,4 @@
 <?php
-
 namespace Nfilin\Libs\MobileNotifications\Message;
 
 use Nfilin\Libs\MobileNotifications\Device\DeviceListInterface;
